@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  context-path: /
+
+spring:
+  application:
+    name: ricston-flights
+  
+  datasource:
+    username: d_martorana
+    password: martorana_12345
+    url: jdbc:mysql://rds-mysql-assessment.ckld9drpn0yb.eu-west-1.rds.amazonaws.com:3306/airlines_sandbox
+    driver-class-name: com.mysql.jdbc.Driver
+    
+  jpa:
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    
