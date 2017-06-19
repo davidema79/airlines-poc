@@ -1,0 +1,376 @@
+#%RAML 1.0
+title: "Api Documentation"
+description: "Api Documentation"
+version: "1.0"
+protocols:
+- "HTTP"
+baseUri: "http://localhost:8080/"
+types:
+  AddFlightRequest:
+    type: "object"
+    properties:
+      aircraftIATACode:
+        type: "string"
+        required: false
+      airlineIATACode:
+        type: "string"
+        required: false
+      dateTime:
+        type: "string"
+        required: false
+        example: "yyyy-MM-dd HH:mm:ss"
+      departureAirportIATACode:
+        type: "string"
+        required: false
+      destinationAirportIATACode:
+        type: "string"
+        required: false
+      flightCode:
+        type: "string"
+        required: false
+      price:
+        type: "number"
+        required: false
+      seats:
+        type: "integer"
+        format: "int32"
+        required: false
+  Page-AirlineResponse:
+    type: "object"
+    properties:
+      content:
+        type: "array"
+        required: false
+        items:
+          type: "AirlineResponse"
+      first:
+        type: "boolean"
+        required: false
+      last:
+        type: "boolean"
+        required: false
+      number:
+        type: "integer"
+        format: "int32"
+        required: false
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+        required: false
+      size:
+        type: "integer"
+        format: "int32"
+        required: false
+      sort:
+        type: "Sort"
+        required: false
+      totalElements:
+        type: "integer"
+        format: "int64"
+        required: false
+      totalPages:
+        type: "integer"
+        format: "int32"
+        required: false
+  Page-DestinationResponse:
+    type: "object"
+    properties:
+      content:
+        type: "array"
+        required: false
+        items:
+          type: "DestinationResponse"
+      first:
+        type: "boolean"
+        required: false
+      last:
+        type: "boolean"
+        required: false
+      number:
+        type: "integer"
+        format: "int32"
+        required: false
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+        required: false
+      size:
+        type: "integer"
+        format: "int32"
+        required: false
+      sort:
+        type: "Sort"
+        required: false
+      totalElements:
+        type: "integer"
+        format: "int64"
+        required: false
+      totalPages:
+        type: "integer"
+        format: "int32"
+        required: false
+  FlightResponse:
+    type: "object"
+    properties:
+      airlineName:
+        type: "string"
+        required: false
+      code:
+        type: "string"
+        required: false
+      date:
+        type: "string"
+        required: false
+      departureAirport:
+        type: "string"
+        required: false
+      destinationAirport:
+        type: "string"
+        required: false
+  BuyTicketRequest:
+    type: "object"
+    properties:
+      dateTime:
+        type: "string"
+        required: false
+        example: "yyyy-MM-dd HH:mm:ss"
+      flightCode:
+        type: "string"
+        required: false
+  Sort:
+    type: "object"
+  AirlineResponse:
+    type: "object"
+    properties:
+      _selfLink:
+        type: "string"
+        required: false
+      active:
+        type: "string"
+        required: false
+      country:
+        type: "string"
+        required: false
+      iataCode:
+        type: "string"
+        required: false
+      icaoCode:
+        type: "string"
+        required: false
+      id:
+        type: "integer"
+        format: "int64"
+        required: false
+      name:
+        type: "string"
+        required: false
+  DestinationResponse:
+    type: "object"
+    properties:
+      airportName:
+        type: "string"
+        required: false
+      city:
+        type: "string"
+        required: false
+      country:
+        type: "string"
+        required: false
+  ChangePriceRequest:
+    type: "object"
+    properties:
+      dateTime:
+        type: "string"
+        required: false
+        example: "yyyy-MM-dd HH:mm:ss"
+      flightCode:
+        type: "string"
+        required: false
+      price:
+        type: "number"
+        required: false
+  View:
+    type: "object"
+    properties:
+      contentType:
+        type: "string"
+        required: false
+/airlines:
+  get:
+    displayName: "getAirlines"
+    description: "Lists all the airlines per page."
+    queryParameters:
+      page:
+        type: "integer"
+        format: "int32"
+        description: "page"
+        default: 1
+        required: false
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: "Page-AirlineResponse"
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "Not Found"
+      500:
+        description: "Internal Error"
+/airlines/{id}:
+  uriParameters:
+    id:
+      type: "integer"
+      format: "int64"
+      description: "id"
+  get:
+    displayName: "getAirlinesById"
+    description: "Display the airline details with the given id."
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: "AirlineResponse"
+      400:
+        description: "BAD REQUEST: One or more of the given values is not valid."
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "NOT FOUND: Airline not found."
+      500:
+        description: "Internal Error"
+/airlines/{id}/routes/destinations:
+  uriParameters:
+    id:
+      type: "integer"
+      format: "int64"
+      description: "id"
+  get:
+    displayName: "getDestinations"
+    description: "Lists all the routes destionations for a the airline id."
+    queryParameters:
+      page:
+        type: "integer"
+        format: "int32"
+        description: "page"
+        default: 1
+        required: false
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: "Page-DestinationResponse"
+      400:
+        description: "BAD REQUEST: One or more of the given values is not valid."
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "NOT FOUND: Airline not found."
+      500:
+        description: "Internal Error"
+
+/flights:
+  get:
+    displayName: "getFlights"
+    description: "Lists the flights with a given departure date."
+    queryParameters:
+      date:
+        type: "string"
+        description: "date"
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: "array"
+            items:
+              type: "FlightResponse"
+      400:
+        description: "Given date is not valid. Please insert a valid date in the form\
+          \ of: yyyy-MM-dd"
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "Not Found"
+      500:
+        description: "INTERNAL_SERVER_ERROR: Failure within our services."
+  post:
+    displayName: "addFlight"
+    description: "Add a new flight availability for a given route. Airline, aircraft\
+      \ and departure and destination airports are identified by the IATA code."
+    body:
+      application/json:
+        type: "AddFlightRequest"
+    responses:
+      200:
+        description: "OK"
+        body:
+          application/json:
+            type: "FlightResponse"
+      201:
+        description: "Created"
+      400:
+        description: "BAD REQUEST: One or more of the given codes is not valid."
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "NOT FOUND: Given route does not exist."
+      500:
+        description: "Internal Error"
+/flights/buyticket:
+  post:
+    displayName: "buyTicket"
+    description: "Buy a ticket of a given flight."
+    body:
+      application/json:
+        type: "BuyTicketRequest"
+    responses:
+      200:
+        description: "OK"
+      201:
+        description: "Created"
+      400:
+        description: "BAD REQUEST: One or more of the given values is not valid."
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "NOT FOUND: Flight not found."
+      500:
+        description: "Internal Error"
+/flights/price:
+  put:
+    displayName: "setFlightPrice"
+    description: "Change the price ticket of a given flight."
+    body:
+      application/json:
+        type: "ChangePriceRequest"
+    responses:
+      200:
+        description: "OK"
+      201:
+        description: "Created"
+      400:
+        description: "BAD REQUEST: One or more of the given values is not valid."
+      401:
+        description: "Unauthorized"
+      403:
+        description: "Forbidden"
+      404:
+        description: "NOT FOUND: Flight not found."
+      500:
+        description: "Internal Error"
