@@ -46,7 +46,7 @@ public class AirlinesRestController {
 			@ApiResponse(code = 500, message= "Internal Error" ),
 			@ApiResponse(code = 200, message = "") })	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping({""})
+	@GetMapping("")
 	public Page<AirlineResponse> getAirlines(@RequestParam(name="page", required=false, defaultValue="1") final int page) {
 		
 		final int pageReturned = Math.max(page, 1); 
@@ -65,7 +65,7 @@ public class AirlinesRestController {
 			@ApiResponse(code = 500, message= "Internal Error" ),
 			@ApiResponse(code = 200, message = "") })	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping({"{id}"})
+	@GetMapping("/{id}")
 	public AirlineResponse getAirlinesById(@PathVariable(name="id") final Long id) {
 		
 		final Airline airline = this.persistenceService.getAirlineById(id);
@@ -83,7 +83,7 @@ public class AirlinesRestController {
 			@ApiResponse(code = 500, message= "Internal Error" ),
 			@ApiResponse(code = 200, message = "") })
 	@PreAuthorize("hasRole('ROLE_AGENT')")
-	@GetMapping("{id}/routes/destinations")
+	@GetMapping("/{id}/routes/destinations")
 	public Page<DestinationResponse> getDestinations(@PathVariable(name="id") final Long id, @RequestParam(name="page", required=false, defaultValue="1") final int page) {
 		
 		final Airline airline = this.persistenceService.getAirlineById(id);

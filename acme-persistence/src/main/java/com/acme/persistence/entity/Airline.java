@@ -39,6 +39,24 @@ public class Airline {
 	@Column(name = "Active")
 	private String active;
 
+	public Airline() {
+		
+	}
+	
+	public Airline(Long id, String name, String alias, String iataCode, String icaoCode, String callsign,
+			String country, String active) {
+		this.id = id;
+		this.name = name;
+		this.alias = alias;
+		this.iataCode = iataCode;
+		this.icaoCode = icaoCode;
+		this.callsign = callsign;
+		this.country = country;
+		this.active = active;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
