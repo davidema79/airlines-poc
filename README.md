@@ -20,4 +20,4 @@ The build result is an executable .jar file: `acme-travel.jar`, inside the direc
 The API is documented in a proper `Rest API Model Language` file, in the main directory.
 
 ### SWAGGER
-If you prefer to see a graphical representation of the API, you can use the user interface you are provided with, at the url `http://localhost:8080/` 
+If you prefer to see a graphical representation of the API, you can use the user interface you are provided with, at the url `http://localhost:8080/swagger-ui.html` 
