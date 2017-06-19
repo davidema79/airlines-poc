@@ -3,7 +3,6 @@ package com.acme.main.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.acme.main.config.security.AuthorizationConfig;
 import com.acme.main.config.security.SecurityConfig;
@@ -26,7 +25,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  *
  */	
 @EnableSwagger2
-@EnableWebMvc
 @Import({SecurityConfig.class, AuthorizationConfig.class, PersistenceConfig.class})
 public class ApplicationConfig {
 
