@@ -2,8 +2,8 @@
 Back-end part of a small project that shows how to integrate Spring Boot Application with Security Enabled.
 
 ## Build Results
-![Uptime Check One](https://github.com/github/docs/actions/workflows/uptimecheck-one.yml/badge.svg)
-![Uptime Chcek Two - Fail](https://github.com/github/docs/actions/workflows/uptimecheck-two.yml/badge.svg)
+![Uptime Check One](https://github.com/davidema79/airlines-poc/actions/workflows/uptimecheck-one.yml/badge.svg)
+![Uptime Chcek Two - Fail](https://github.com/davidema79/airlines-poc/actions/workflows/uptimecheck-two.yml/badge.svg)
 
 ## Build
 Build with the command:
