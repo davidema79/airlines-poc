@@ -7,4 +7,4 @@ jobs:
   uptimecheck:
     runs-on: ubuntu-latest
     steps:
-      - run: curl http://www.google.ita
+      - run: curl https://www.google.ita
