@@ -1,7 +1,9 @@
 acme-main/.settings/
 acme-main/.classpath
+acme-main/target/
 .settings/
 acme-main/.gitignore
 acme-persistence/.classpath
 acme-persistence/.gitignore
+acme-persistence/target/
 target/failsafe-reports/failsafe-summary.xml
