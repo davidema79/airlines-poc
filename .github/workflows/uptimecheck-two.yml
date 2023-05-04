@@ -1,0 +1,10 @@
+name: Uptime Check Two
+run-name: Uptime Check Two ${{ github.actor }}
+on:
+  workflow_dispatch
+  
+jobs:
+  uptimecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl http://www.google.ita
