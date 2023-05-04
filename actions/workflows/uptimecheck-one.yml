@@ -1,10 +1,10 @@
 name: Uptime Check One
 run-name: Uptime Check One ${{ github.actor }}
 on:
-  workflow_dispatch
+  push
   
 jobs:
-  check-bats-version:
+  uptimecheck:
     runs-on: ubuntu-latest
     steps:
       - run: curl http://www.google.it
